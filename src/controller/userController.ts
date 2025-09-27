@@ -28,24 +28,16 @@ export const getUserById = (req: Request, res: Response) => {
 };
 
 // Exercício 2 - Filtrar usuários por fachetaria
- export const getUsersByAgeRange = (req: Request, res: Response) => {
-  try {
-    const min = Number(req.query.min);
-    const max = Number(req.query.max);
+export const getUsersByAgeRange = (req: Request, res: Response) => {
+  const min = Number(req.query.min);
+  const max = Number(req.query.max);
 
-    const filteredUsers = filterUsersByAgeRange(min, max);
-
-    res.status(200).json({
-      success: true,
-      total: filteredUsers.length,
-      data: filteredUsers,
-    });
-  } catch (error: any) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
+  if (isNaN(min) || isNaN(max)) {
+    return res.status(400).json({ success: false, message: "Parâmetros inválidos" });
   }
+
+  const filtered = users.filter(u => u.age >= min && u.age <= max);
+  res.json({ success: true, data: filtered });
 };
 
 //  EXERCÍCIO 4 Atualização completa
