@@ -1,5 +1,4 @@
 // João Vitor Façanha Neves
-
 import { User } from './types/userTypes';
 import { Post } from './types/postTypes';
 

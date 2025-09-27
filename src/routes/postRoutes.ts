@@ -1,3 +1,4 @@
+// João Vitor Façanha Neves
 import { Router } from "express";
 import { createPost } from "../controller/postController";
 import { updatePostPatch } from "../controller/postController";
@@ -11,5 +12,3 @@ router.delete("/:id", deletePost); // EXERCÍCIO 6
 
 export default router;
 
-import postRoutes from './routes/postRoutes';
-app.use('/posts', postRoutes);

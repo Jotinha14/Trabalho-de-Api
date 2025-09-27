@@ -1,5 +1,4 @@
 // João Vitor Façanha Neves
-
 export interface User {
   id: number;
   name: string;

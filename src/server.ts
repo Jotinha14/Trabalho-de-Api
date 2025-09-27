@@ -1,10 +1,9 @@
 // João Vitor Façanha Neves
-
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes';
-import { getUsersByAgeRange } from './controller/userController';
+
 
 dotenv.config();
 
