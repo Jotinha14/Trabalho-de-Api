@@ -3,7 +3,6 @@
 import express from 'express';
 import { users } from '../db';
 import { Request, Response } from 'express';
-import { filterUsersByAgeRange } from '../business/userBusiness';
 import { replaceUser } from '../business/userBusiness';
 import { cleanupInactiveUsers } from '../business/userBusiness';
 
@@ -80,6 +79,29 @@ export const cleanupInactiveUsersController = (req: Request, res: Response) => {
         message: `${deletedCount} usuário(s) inativo(s) foram removido(s) com sucesso.`, 
         deletedCount 
     });
+};
+
+// Exercício 5 - Atualização parcial do usuário (PATCH)
+export const updateUserPatch = (req: Request, res: Response) => {
+  const userId = parseInt(req.params.id as string, 10); 
+  const updatedData = req.body;
+
+  if (isNaN(userId)) {
+      return res.status(400).json({ 
+          success: false, 
+          message: 'ID inválido. Forneça um ID numérico válido.' 
+      });
+  }
+
+  const user = users.find(u => u.id === userId);
+
+  if (!user) {
+      return res.status(404).json({ success: false, message: 'Usuário não encontrado.' });
+  }
+
+  Object.assign(user, updatedData);
+
+  res.status(200).json({ success: true, message: 'Usuário atualizado com sucesso.', data: user });
 };
 
 

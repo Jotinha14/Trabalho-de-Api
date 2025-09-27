@@ -12,8 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/user", userRoutes);
-app.get("/users/age-range", getUsersByAgeRange);
+app.use('/users', userRoutes);
 
 app.listen(3000, () => {
   console.log("API rodando na porta 3000");
