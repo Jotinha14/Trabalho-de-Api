@@ -1,15 +1,15 @@
-import { Router } from 'express';
-import { createPostController, patchPostController,deletePostController} from '../controller/postController';
+import { Router } from "express";
+import { createPost } from "../controller/postController";
+import { updatePostPatch } from "../controller/postController";
+import { deletePost } from "../controller/postController";
 
 const router = Router();
 
-// EXERCÍCIO 3: POST /posts (Criar post)
-router.post('/', createPostController); 
-
-// EXERCÍCIO 5: PATCH /posts/:id (Atualização parcial)
-router.patch('/:id', patchPostController);
-
-// EXERCÍCIO 6: DELETE /posts/:id (Remoção com autorização)
-router.delete('/:id', deletePostController);
+router.post("/", createPost); // EXERCÍCIO 3
+router.patch("/:id", updatePostPatch); // EXERCÍCIO 5
+router.delete("/:id", deletePost); // EXERCÍCIO 6
 
 export default router;
+
+import postRoutes from './routes/postRoutes';
+app.use('/posts', postRoutes);
